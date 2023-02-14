@@ -1,4 +1,4 @@
-package tech.solres.dms.dmsmsbe.user;
+package tech.solres.dms.dmsmsbe.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,20 +17,29 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="_user")
+@Table(name = "_user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-    private Integer id;
-    private String firstname;
-    private String lastname;
+    private Integer id_user;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @OneToMany(mappedBy = "parentUser")
+    private List<User> subUser;
+    @ManyToOne
+    private User parentUser;
+    @ManyToMany
+    @JoinTable(
+            name="user_role",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_role")
+    )
+    private List<Role> role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(role.get(0).getName())); // @TODO Here it only uses the first role!!!
     }
 
     @Override

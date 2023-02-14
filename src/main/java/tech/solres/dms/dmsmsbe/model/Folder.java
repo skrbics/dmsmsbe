@@ -6,19 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-
-public class Document {
+public class Folder {
     @Id
     @GeneratedValue
-    private Integer id_document;
+    private Integer id_folder;
     @Column(nullable = false)
     private String title;
-    @ManyToOne
-    @JoinColumn(name = "id_folder")
-    private Folder folder;
+    @OneToMany(mappedBy = "folder")
+    private List<Document> documentList;
 }

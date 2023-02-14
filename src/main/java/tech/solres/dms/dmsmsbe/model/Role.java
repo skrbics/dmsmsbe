@@ -6,19 +6,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-
-public class Document {
+public class Role {
     @Id
     @GeneratedValue
-    private Integer id_document;
+    private Integer id_role;
     @Column(nullable = false)
-    private String title;
-    @ManyToOne
-    @JoinColumn(name = "id_folder")
-    private Folder folder;
+    private String name;
+
 }

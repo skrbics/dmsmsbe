@@ -1,6 +1,6 @@
 package tech.solres.dms.dmsmsbe.config;
 
-import com.skrbics.jwtsec.user.UserRepository;
+import tech.solres.dms.dmsmsbe.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

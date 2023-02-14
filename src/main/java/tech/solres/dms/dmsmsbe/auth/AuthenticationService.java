@@ -1,9 +1,9 @@
 package tech.solres.dms.dmsmsbe.auth;
 
-import com.skrbics.jwtsec.config.JwtService;
-import com.skrbics.jwtsec.user.Role;
-import com.skrbics.jwtsec.user.User;
-import com.skrbics.jwtsec.user.UserRepository;
+import tech.solres.dms.dmsmsbe.config.JwtService;
+import tech.solres.dms.dmsmsbe.model.Role;
+import tech.solres.dms.dmsmsbe.model.User;
+import tech.solres.dms.dmsmsbe.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,11 +19,10 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
+                .firstName(request.getFirstname())
+                .lastName(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
