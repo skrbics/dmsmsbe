@@ -6,17 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Role {
+public class Metadata {
     @Id
     @GeneratedValue
-    private Integer id_role;
-    @Column(nullable = false)
-    private String name;
+    private Integer id_meta_data;
+    @OneToOne
+    @JoinColumn(name="id_document")
+    private Document document;
 }

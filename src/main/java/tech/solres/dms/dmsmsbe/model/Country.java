@@ -13,15 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Folder {
+public class Country {
     @Id
     @GeneratedValue
-    private Integer id_folder;
-    @Column(nullable = false)
-    private String title;
-    @OneToMany(mappedBy = "folder")
-    private List<Document> documentList;
-    @ManyToOne
-    @JoinColumn(name="id_folder_workflow")
-    private FolderWorkflow folderWorkflow;
+    private Integer id_country;
+    private String name;
+    @OneToMany(mappedBy = "country")
+    private List<City> cityList;
 }

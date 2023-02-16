@@ -6,17 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Role {
+public class Phone {
     @Id
     @GeneratedValue
-    private Integer id_role;
-    @Column(nullable = false)
-    private String name;
+    private Integer id_phone;
+    private String number;
+    private String tag;
+    @ManyToOne
+    @JoinColumn(name="id_business_partner")
+    private BusinessPartner businessPartner;
+
 }

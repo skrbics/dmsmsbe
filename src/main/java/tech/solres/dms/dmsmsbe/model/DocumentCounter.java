@@ -1,22 +1,21 @@
 package tech.solres.dms.dmsmsbe.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Role {
+public class DocumentCounter {
     @Id
     @GeneratedValue
-    private Integer id_role;
-    @Column(nullable = false)
-    private String name;
+    private Integer id_document_counter;
+    private String documentCounterTitle;
 }

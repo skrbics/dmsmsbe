@@ -6,17 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Role {
+public class Alarm {
     @Id
     @GeneratedValue
-    private Integer id_role;
-    @Column(nullable = false)
-    private String name;
+    private Integer id_alarm;
+    private Integer daysBeforeDeadLine;
+    @ManyToOne
+    @JoinColumn(name="id_document_workflow_phase")
+    private DocumentWorkflowPhase documentWorkflowPhase;
 }
